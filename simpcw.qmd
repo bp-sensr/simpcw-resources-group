@@ -30,7 +30,7 @@ toc-expand: true
 prefer-html: true
 toc-location: left
 styles: styles.css
-github: https://github.com/biodiversitypathways/simpcw-resources-group
+github: https://github.com/bp-sensr/simpcw-resources-group
 ---
 
 ![Site RAU-286B Grizzly Bear](./assets/286B.png)
