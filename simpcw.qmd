@@ -112,11 +112,25 @@ cam_dep <- srg_cam_imgs |>
 
 # Introduction
 
+Passive environmental monitoring tools, such as trail cameras and autonomous recording units (ARUs), offer a way to observe ecosystems without active human presence. While ARUs (Shonefield and Bayne (2017)) are tailored to capture acoustic data from vocal species like amphibians and birds, trail cameras excel at tracking medium to large wildlife. Around the world, conservationists and resource managers are increasingly adopting these technologies because they allow for continuous, long-term monitoring with minimal habitat disruption (Sugai et al. (2018)). The insights gathered from these devices can provide critical data to guide ecological management and policy decisions. However, because these sensors make it exceptionally easy to collect large amounts of information, establishing rigorous data integrity standards is essential to guarantee that the data can be easily shared and integrated across different systems in the future.
+
+This project represents a localized subsection of the Fish and Wildlife Compensation Program’s grizzly bear population unit, focused within the Raush Valley. Prior to this initiative, there was very little data regarding what wildlife and species actively inhabited the valley. As an initial exploratory project, this baseline monitoring program is intended to evaluate current methods and advise future long-term ecological assessment. While informing grizzly bear management practices remains the primary concern of the study, the data gathered will also play a critical role in guiding future Raush funding and broader ecosystem management strategies.
+
+This report compiles the outcomes of this pilot study to ensure the insights are both transparent and easy for others to replicate. Specifically, this document aims to:
+
+-   **Standardize data workflows:** Establish clear, consistent, and reproducible protocols for managing and processing information gathered by remote sensors in the valley.
+
+-   **Establish a local wildlife baseline:** Deliver a detailed overview of the various wildlife species identified in the Raush Valley watershed, including their relative presence and activity levels.
+
+-   **Guide future strategies and funding:** Utilize preliminary results to guide future funding allocations, track local biodiversity trends, and refine long-term monitoring strategies for the Raush Valley.
+
+-   **Inform regional conservation:** Establish an initial ecological foundation to inform grizzly bear management practices and support long-term regional conservation planning.
+
 # Methods
 
 ## Data collection
 
-Cameras and autonomous recording units (ARUs) were deployed across `r n_distinct(simpcw_locs$Location)` sites in the Raush Valley watershed (@fig-aru-monitoring-locations). A total of `r nrow(simpcw_locs)` sensors were deployed, comprising `r simpcw_locs |> filter(Sensor == "Camera") |> nrow()` cameras and `r simpcw_locs |> filter(Sensor == "ARU") |> nrow()` ARUs, distributed across `r simpcw_locs |> mutate(block = str_extract(Location, "RAU-\\d+")) |> distinct(block) |> nrow()` monitoring blocks in the valley. ARUs recorded for 30 min intervals throughout their deployment until battery failure or SD cards were filled up. Cameras were configured for motion-triggered capture, acquiring a three-image burst per detection event. A total of `r nrow(srg_recs)` recordings and `r sum(srg_cam_imgs$totalImageCount)` images were collected, with most data collection spanning between `r min(srg_cam_imgs$startDate)` and `r max(srg_cam_imgs$startDate)`. Location names were standardized for this report by aligning sites where ARUs and cameras were co-deployed, assigning the ARU records the corresponding camera location name. These changes were applied only within the reporting outputs; original location names in WildTrax remain unchanged. 
+Cameras and autonomous recording units (ARUs) were deployed across `r n_distinct(simpcw_locs$Location)` sites in the Raush Valley watershed (@fig-aru-monitoring-locations). A total of `r nrow(simpcw_locs)` sensors were deployed, comprising `r simpcw_locs |> filter(Sensor == "Camera") |> nrow()` cameras and `r simpcw_locs |> filter(Sensor == "ARU") |> nrow()` ARUs, distributed across `r simpcw_locs |> mutate(block = str_extract(Location, "RAU-\\d+")) |> distinct(block) |> nrow()` monitoring blocks in the valley. ARUs recorded for 30 min intervals throughout their deployment until battery failure or SD cards were filled up. Cameras were configured for motion-triggered capture, acquiring a three-image burst per detection event. A total of `r nrow(srg_recs)` recordings and `r sum(srg_cam_imgs$totalImageCount)` images were collected, with most data collection spanning between `r min(srg_cam_imgs$startDate)` and `r max(srg_cam_imgs$startDate)`. Location names were standardized for this report by aligning sites where ARUs and cameras were co-deployed, assigning the ARU records the corresponding camera location name. These changes were applied only within the reporting outputs; original location names in WildTrax remain unchanged.
 
 ```{r}
 #| warning: false
@@ -264,7 +278,6 @@ srg_recs |>
   xlab("Date") + ylab("Location")
 
 ```
-
 
 ## Acoustic data
 
@@ -439,7 +452,7 @@ shannon_d |>
 
 ```
 
-Camera deployments recorded a diverse assemblage of mammals, with detections dominated by large ungulates and common alpine and subalpine species (see @fig-species). Hoary Marmot was the most frequently detected species (~1,200 images), followed by White-tailed Deer (~750) and Moose (~680). Woodland Caribou were well represented (~620 images) and were detected at all RAU-286 locations, indicating consistent use of the study area. Other notable detections included Grizzly Bear, Mule Deer, and American Pika, though at lower frequencies. Carnivores such as Gray Wolf and Wolverine were detected infrequently. Excluding domestic and non-animal detections (i.e. humans, vehicles, NONE, etc.) `r length(no_animals)` camera locations had no motion detection animals images (`r paste0(no_animals)`). No notable species detections or species-at-risk were recorded from ARU data, likely reflecting seasonal deployment outside peak vocal activity periods (see @sec-acoustic-recommendations). 
+Camera deployments recorded a diverse assemblage of mammals, with detections dominated by large ungulates and common alpine and subalpine species (see @fig-species). Hoary Marmot was the most frequently detected species (\~1,200 images), followed by White-tailed Deer (\~750) and Moose (\~680). Woodland Caribou were well represented (\~620 images) and were detected at all RAU-286 locations, indicating consistent use of the study area. Other notable detections included Grizzly Bear, Mule Deer, and American Pika, though at lower frequencies. Carnivores such as Gray Wolf and Wolverine were detected infrequently. Excluding domestic and non-animal detections (i.e. humans, vehicles, NONE, etc.) `r length(no_animals)` camera locations had no motion detection animals images (`r paste0(no_animals)`). No notable species detections or species-at-risk were recorded from ARU data, likely reflecting seasonal deployment outside peak vocal activity periods (see @sec-acoustic-recommendations).
 
 ```{r}
 #| warning: false
