@@ -110,8 +110,6 @@ cam_dep <- srg_cam_imgs |>
 
 ```
 
-# Land Acknowledgement
-
 # Introduction
 
 Passive environmental monitoring tools, such as trail cameras and autonomous recording units (ARUs), offer a way to observe ecosystems without active human presence. While ARUs [@aru-overview] are tailored to capture acoustic data from vocal species like amphibians and birds, trail cameras excel at tracking medium to large wildlife. Around the world, conservationists and resource managers are increasingly adopting these technologies because they allow for continuous, long-term monitoring with minimal habitat disruption [@lots-of-pam]. The insights gathered from these devices can provide critical data to guide ecological management and policy decisions. However, because these sensors make it exceptionally easy to collect large amounts of information, establishing rigorous data integrity standards is essential to guarantee that the data can be easily shared and integrated across different systems in the future.
